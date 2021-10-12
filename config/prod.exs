@@ -10,11 +10,21 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :chirp, ChirpWeb.Endpoint,
-  url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
+  server: true,
+  http: [port: {:system, "PORT"}], # Needed for Phoenix 1.2 and 1.4. Doesn't hurt for 1.3.
+  url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 443]
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+config :gigalixir_getting_started, Chirp.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: "${DATABASE_URL}",
+  database: "",
+  ssl: true,
+  # Free tier db only allows 4 connections. Rolling deploys need pool_size*(n+1) connections where n is the number of app replicas.
+  pool_size: 2
 
 # ## SSL Support
 #
