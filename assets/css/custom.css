@@ -1,0 +1,14 @@
+#posts {
+  align-items: center;
+}
+
+.post {
+  margin: 10px 100px;
+  padding: 10px 20px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.post-button-column {
+  text-align: center;
+  margin: 15px 0px 0px 0px;
+}
