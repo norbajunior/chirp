@@ -10,15 +10,16 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :chirp, ChirpWeb.Endpoint,
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
-  http: [port: {:system, "PORT"}], # Needed for Phoenix 1.2 and 1.4. Doesn't hurt for 1.3.
+  # Needed for Phoenix 1.2 and 1.4. Doesn't hurt for 1.3.
+  http: [port: {:system, "PORT"}],
   url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 443]
 
 # Do not print debug messages in production
 config :logger, level: :info
 
-config :gigalixir_getting_started, Chirp.Repo,
+config :chirp, Chirp.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: "${DATABASE_URL}",
   database: "",
